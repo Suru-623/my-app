@@ -7,7 +7,7 @@ function MaterialUi() {
         Welcome
       </Typography>
 
-      <TextField className='' label="Name" />
+      <TextField placeholder='Enter Name' className='' label="Name" />
 
       <Button variant="contained">
         Submit

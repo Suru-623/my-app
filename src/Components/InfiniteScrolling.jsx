@@ -26,7 +26,6 @@ function InfiniteScrolling() {
     fetchProducts();
   }, [page]);
 
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

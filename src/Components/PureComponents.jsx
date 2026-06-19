@@ -37,11 +37,8 @@ class PureComponents extends PureComponent {
 
     return (
       <div>
-
         <h1>{this.state.count}</h1>
-
         <Child />
-
         <button
           onClick={() =>
             this.setState({
@@ -51,7 +48,6 @@ class PureComponents extends PureComponent {
         >
           Increment
         </button>
-
       </div>
     );
   }

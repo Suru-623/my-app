@@ -1,34 +1,51 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState ,useEffect} from 'react'
 
 function SearchWithDebouncing() {
-    const [search,setSearch]=useState("")
-    const [debouncedSearch,setDebouncedSearch]=useState("")
-    useEffect(()=>{
-        const timer=setTimeout(()=>{
-            setDebouncedSearch(search)
-    },3000)
-        return()=>{
-clearTimeout(timer)
-        }
-    },[search])
-    useEffect(()=>{
-        if(debouncedSearch){
-            console.log("API Call:", debouncedSearch);
-            fetch(`https://jsonplaceholder.typicode.com/users/search?q=${debouncedSearch}`)
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-        }
-    }, [debouncedSearch])
-  return (<>
+  const[search,setSearch]=useState("")
+  const[debouncedSearch,setDebouncedSearch]=useState("")
+  const[users,setUsers]=useState([])
+
+  useEffect(()=>{
+    const timer= setTimeout(()=>setDebouncedSearch(search),4000)
+return()=>clearTimeout(timer)
+  },[search])
+  useEffect(()=>{
+    if(!debouncedSearch.trim()){
+setUsers([])
+return
+    }
+
+    const fetchUsers= async()=>{
+      try{
+        const response= await fetch("https://jsonplaceholder.typicode.com/users")
+        const data =await response.json()
+        const filteredUsers= data.filter((user)=>user.name.toLowerCase().includes(debouncedSearch.toLowerCase()))
+        setUsers(filteredUsers)
+
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
+    fetchUsers()
+  },[debouncedSearch])
+  return (
+    <>
     <div>SearchWithDebouncing</div>
-     <input
-        type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-    </>
+    <input placeholder='search' value={search} onChange={(e)=>setSearch(e.target.value)}/>
+   
+    <ul>
+    {
+      users.map((user)=>
+<li key={user.id}>
+{user.name}
+<br></br>
+{user.username}
+</li>
+      
+      )
+    }</ul> </>
   )
 }
 
-export {SearchWithDebouncing};
+export {SearchWithDebouncing}

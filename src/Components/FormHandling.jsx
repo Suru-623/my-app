@@ -44,24 +44,26 @@
 // }
 
 // export {FormHandling}
-import React,{useState,useRef} from 'react'
+import React,{useRef, useState} from 'react'
 
 function FormHandling() {
-  const[name,setName]=useState("")
-  const emailRef=useRef() 
-function formHandler(e){
-e.prevntDefault()
- console.log(name)
-  console.log("Email",emailRef.current.value)
-}
+  const [name,setName] = useState("")
+  const emailRef = useRef()
+  function handleForm(e){
+e.preventDefault();
+console.log("form submitted successfully")
+console.log(name)
+console.log(emailRef.current.value)
+  }
   return (
-  <>  
+<>
     <div>FormHandling</div>
-  <form onsubmit={formHandler}>
-<input type="text" placeholder='Enter name' onChange={(e)=>setName(e.target.value)}/>
-<input type="text" placeholder='Enter email' ref={emailRef}/>
-  </form>
-  </>
+    <form onSubmit={handleForm}>
+    <div><label>Name</label><input onChange={(e)=>setName(e.target.value)} placeholder='Name' type="text"></input></div>
+    <div><label>Email</label><input ref={emailRef} placeholder='Email'></input></div>
+    <button type="submit">Submit</button>
+    </form>
+    </>
   )
 }
 

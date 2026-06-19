@@ -1,60 +1,56 @@
-import { useState,useEffect } from "react";
-// import { FetchApi } from "./FetchApi";
+import React,{useState,useEffect} from 'react'
 
-function FetchApi(){
+function FetchApi() {
   const [users,setUsers]=useState([])
   useEffect(()=>{
     console.log("Component Mounted");
-    const controller = new AbortController();
-    const fetchUsers=  async()=>{
-try{
- const response = await fetch("https://jsonplaceholder.typicode.com/users",{
+  const controller= new AbortController();
+  const fetchUser=async()=>{
+    try{
+const response= await fetch("https://jsonplaceholder.typicode.com/users",{
   signal:controller.signal,
- })
- await new Promise((resolve)=>setTimeout(resolve,5000))
- 
-        console.log("API Response Received");
- const data= await response.json()
+})
+await new Promise((resolve)=> setTimeout(()=>resolve,3000))
+const data= await response.json()
+console.log("Fetched data:", data);
 setUsers(data)
-
-}
-catch(error){
+    }
+    catch(error){
 if(error.name==="AbortError"){
-  console.log("Component mounted because Api request cancelled")
+console.log("Request cancelled due to component mounted")
 }
 else{
   console.log(error)
 }
-} }
-fetchUsers();
-//Cleanup Function
-return()=>{
-   console.log("Component Unmounted");
-  controller.abort()
-}
+    }
+  }
+  fetchUser()
+  return()=>{
+    console.log("Component unmounted")
+    controller.abort();
+  }
   },[])
-  return(
-    <>
-    <h1>User List</h1>
-{users.map(user=>
 
-  <div key={user.id}>
-    <p>{user.name}</p>
-  </div>
-)}
-    </>
+  return (
+  <>
+    <div>CancelApi</div>
+  {
+    users.map((user)=>
+    <div key={user.id}>
+<p>{user.name}</p>
+    </div>)
+  }
+  </>
   )
 }
 function CancelApi(){
   const [show,setShow]=useState(true)
   return(
     <>
-    <button onClick={()=>setShow(!show)}>
-      {show? "Unmount Component":"Mount Component"}
-    </button>
-    <hr />
-    {show&& <FetchApi/>}
+    <button onClick={()=>setShow(!show)}>{show?"Unmount Component":"Mount Component"}</button>
+    {show && <FetchApi/>}
     </>
   )
 }
+
 export {CancelApi}

@@ -22,7 +22,7 @@ import {CancelPrevApi} from './Components/CancelPrevApi';
 import {UseEffectConditions} from './Components/UseEffectConditions';
 import {PureComponents} from './Components/PureComponents';
 import {UseMemo} from './Components/UseMemo';
-import UseCallbackHook from './Components/UseCallbackHook';
+import {UseCallbackHook} from './Components/UseCallbackHook';
 import ToDoList from './Components/ToDoList';
 import { LazyLoading } from './Components/LazyLoading';
 import {Progressbar} from './Components/Progressbar';
@@ -30,38 +30,66 @@ import {SearchWithDebouncing} from './Components/SearchWithDebouncing';
 import {InfiniteScrolling} from './Components/InfiniteScrolling';
 import { CancelApi } from './Components/CancelApi';
 import {MaterialUi} from './Components/MaterialUi';
-import UserContext from "./Components/UserContext";
-
-import { UserContext } from "./Components/ThemeContext";
-import Parent from "./Components/Navbar";
+import {Parent} from "./Components/Parent";
+import {SnapshotBeforeUpdate} from "./Components/SnapshotBeforeUpdate";
+import {ComponentWillUnmount} from "./Components/ComponentWillUnmount";
+import ContextApiWithHooks from "./Components/ContextApiWithHooks"
+import UseRefHook from "./Components/UseRefHook"
+import Ref from "./Components/Ref"
+import ForwardRef from "./Components/ForwardRef"
+import ArrayListing from "./Components/ArrayListing"
+import BootstrapArrayListing from "./Components/BootstrapArrayListing"
+import NestedListWithNestedArray from "./Components/NestedListWithNestedArray"
+import Reuse from "./Components/Reuse"
+import UncontrolledComponent from "./Components/UncontrolledComponent"
+import LiftingStateUp from "./Components/LiftingStateUp"
+import UseReducerHook from "./Components/UseReducerHook"
 function App() {
   const [name,setName]=useState("Sara");
 function changeName(){
   setName("Sarvesh");
 }
 const [count,setCount]=useState(0);
+const user="Suruchi"
   return (
     <div className="App">
-      <ThemeContext/>
-      {/* <CancelApi/> */}
-      {/* <MaterialUi/> */}
+      <UseReducerHook/> 
+      {/* <LiftingStateUp/> */}
+      {/* <UncontrolledComponent/> */}
+      {/* <Reuse/> */}
+       {/* <NestedListWithNestedArray/> */}
+    {/* <BootstrapArrayListing/>  */}
+      {/* <ArrayListing/> */}
+      {/* <ForwardRef/>  */}
+      {/* <Ref/> */}
+      {/* <UseRefHook/> */}
+      {/* <ContextApiWithHooks/>  */}
+      {/* <SnapshotBeforeUpdate/>
+       <Parent /> */}
+      {/* <UserContext.Provider value={user}>
+        <Parent />
+      </UserContext.Provider> */}
+      {/* <ThemeContext/> */}
+      {/* <CancelApi/>    */}
+      {/* <ComponentWillUnmount/>  */}
+      {/* <MaterialUi/>  */}
       {/* <InfiniteScrolling /> */}
-      {/* <SearchWithDebouncing/> */}
+      {/* <SearchWithDebouncing/>   */}
       {/* <Progressbar/> */}
       {/* <LazyLoading/> */}
       {/* <ToDoList/> */}
-      {/* {UseCallbackHook} */}
-    {/* <UseMemo/> */}
-       {/* <PureComponents/> */}
+      {/* <UseCallbackHook/> */}
+      {/* <UseMemo/>  */}
+      {/* <PureComponents/> */}
       {/* <UseEffectConditions/> */}
-        {/* <CancelPrevApi/>  */}
+      {/* <CancelPrevApi/>  */}
       {/* <Initial /> */}
-    {/* <FormHandling/>   */}
+      {/* <FormHandling/>    */}
       {/* <CounterValue/> */}
       {/* <InputReplication/> */}
       {/* <FirstFile /> */}
       {/* <ClassComponent /> */}
-       {/* <JSX />  */}
+      {/* <JSX />  */}
       {/* <ClickEvent />  */}
       {/* <Counter /> */}
       {/* <StateFunctionalComp /> */}
@@ -72,10 +100,10 @@ const [count,setCount]=useState(0);
       {/* <PropsFunc name={"Sarvesh"} email={"sru@gmail.com"} info={{salary: 20000,dob:"12-12-2000"}}/> */}
       {/* <SwitchButton/>  */}
       {/* <FetchApi/>   */}
- {/* <FetchApiAxios />   */}
-{/* <ConstructorMethod/> */}
-{/* <UseEffectProps data={count} />
-<button onClick={() => setCount(count + 1)}>Increase</button> */}
+      {/* <FetchApiAxios />   */}
+      {/* <ConstructorMethod/>  */}
+      {/* <UseEffectProps data={count} />
+      <button onClick={() => setCount(count + 1)}>Increase</button> */}
       {/* revision practice */}
     </div>
   );
